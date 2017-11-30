@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import { IProduct } from './product';
+import { ProductService } from './product.service';
 
 @Component({
     templateUrl: './app/products/product-edit-info.component.html'
@@ -17,4 +18,5 @@ export class ProductEditInfoComponent implements OnInit {
 
     ngOnInit(): void {
     }
+
 }
