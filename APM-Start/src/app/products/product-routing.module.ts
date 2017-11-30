@@ -10,40 +10,45 @@ import { ProductEditTagsComponent } from './product-edit-tags.component';
 const ROUTES = [
     {
         path: 'products',
-        component: ProductListComponent
-    },
-    {
-        path: 'products/:id',
-        component: ProductDetailComponent,
-        resolve: { product: ProductResolver }
-    },
-    {
-        path: 'products/:id/edit',
-        component: ProductEditComponent,
-        resolve: { product: ProductResolver },
         children: [
             {
                 path: '',
-                redirectTo: 'info',
-                pathMatch: 'full'
+                component: ProductListComponent
             },
             {
-                path: 'info',
-                component: ProductEditInfoComponent
+                path: ':id',
+                component: ProductDetailComponent,
+                resolve: { product: ProductResolver }
             },
             {
-                path: 'tags',
-                component: ProductEditTagsComponent
+                path: ':id/edit',
+                component: ProductEditComponent,
+                resolve: { product: ProductResolver },
+                children: [
+                    {
+                        path: '',
+                        redirectTo: 'info',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'info',
+                        component: ProductEditInfoComponent
+                    },
+                    {
+                        path: 'tags',
+                        component: ProductEditTagsComponent
+                    }
+                ]
             }
         ]
     }
-  ];
+];
 
 @NgModule({
     imports: [
-        RouterModule.forChild( ROUTES )
+        RouterModule.forChild(ROUTES)
     ],
-    exports: [ RouterModule ],
-    providers: [ ProductResolver ],
+    exports: [RouterModule],
+    providers: [ProductResolver],
 })
-export class ProductRoutingModule {}
+export class ProductRoutingModule { }
