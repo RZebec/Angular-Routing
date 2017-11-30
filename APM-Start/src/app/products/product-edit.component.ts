@@ -76,6 +76,15 @@ export class ProductEditComponent {
         this.router.navigate(['/products', this.product.id]);
     }
 
+    isValid(path: string): boolean {
+        this.validate();
+        if (path) {
+            return this.dataIsValid[path];
+        }
+        return (this.dataIsValid &&
+                Object.keys(this.dataIsValid).every(d => this.dataIsValid[d] === true ));
+    }
+
     validate() {
         this.dataIsValid = {};
 
