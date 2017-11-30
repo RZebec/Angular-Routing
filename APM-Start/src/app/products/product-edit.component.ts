@@ -15,8 +15,21 @@ export class ProductEditComponent {
     pageTitle: string = 'Product Edit';
     errorMessage: string;
 
-    product: IProduct;
     private dataIsValid: { [key: string]: boolean } = {};
+    private currentProduct: IProduct;
+    private originalProduct: IProduct;
+
+    get product(): IProduct {
+        return this.currentProduct;
+    }
+    set product(value: IProduct) {
+        this.currentProduct = value;
+        this.originalProduct = Object.assign({}, value);
+    }
+
+    get isDirty(): boolean {
+        return JSON.stringify(this.originalProduct) !== JSON.stringify(this.currentProduct);
+    }
 
     constructor(
         private productService: ProductService,
