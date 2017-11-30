@@ -9,6 +9,8 @@ import { ProductService } from './product.service';
 
 import { SharedModule } from '../shared/shared.module';
 import { ProductRoutingModule } from './product-routing.module';
+import { ProductEditInfoComponent } from './product-edit-info.component';
+import { ProductEditTagsComponent } from './product-edit-tags.component';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ import { ProductRoutingModule } from './product-routing.module';
     ProductListComponent,
     ProductDetailComponent,
     ProductEditComponent,
-    ProductFilterPipe
+    ProductFilterPipe,
+    ProductEditInfoComponent,
+    ProductEditTagsComponent
   ],
   providers: [
     ProductService
